@@ -1,5 +1,5 @@
 fun main(){
-    Post(
+    val post = Post(
         0,
         0,
         0,
@@ -24,6 +24,10 @@ fun main(){
         0,
         false
     )
+
+
+
+
 
 }
 

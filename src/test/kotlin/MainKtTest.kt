@@ -4,12 +4,10 @@ import org.junit.Test
 class MainKtTest {
 
 
-    private val service = WallService()
-
     @Test
     fun addPost() {
         val post = Post(
-            1,
+            0,
             0,
             0,
             0,
@@ -34,8 +32,10 @@ class MainKtTest {
             false
         )
 
-        service.add(post)
-        assertTrue(post.id != 0)
+        WallService.add(post)
+        WallService.add(post)
+        assertTrue(WallService.posts.last().id > 0)
+
     }
 
     @Test
@@ -65,15 +65,17 @@ class MainKtTest {
             0,
             false
         )
-        service.add(post)
-        assertTrue(service.updateById(0))
+
+        WallService.add(post)
+        assertTrue(WallService.update(post))
 
     }
 
     @Test
     fun updateUnexisting() {
-        val post = Post(
-            0,
+
+        val postUpdate = Post(
+            9,
             0,
             0,
             0,
@@ -97,8 +99,8 @@ class MainKtTest {
             0,
             false
         )
-        service.add(post)
-        assertFalse(service.updateById(5))
+
+        assertFalse(WallService.update(postUpdate))
 
     }
 
